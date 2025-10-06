@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  insta-exporter:
+    # Add this line to specify the platform
+    platform: linux/amd64
+    build: .
+    container_name: insta-cookie-exporter
+    # Load credentials from the .env file
+    env_file:
+      - .env
+    # Map the local 'output' folder to the container's '/app/output' folder
+    volumes:
+      - ./output:/app/output
+    # These are needed to keep the terminal open for the 2FA prompt
+    stdin_open: true
+    tty: true
